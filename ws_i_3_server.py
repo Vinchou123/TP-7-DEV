@@ -1,5 +1,5 @@
 import asyncio
-from websockets import WebSocketServerProtocol, serve
+from websockets import serve
 
 CLIENTS = {}
 
