@@ -2,20 +2,20 @@ import asyncio
 import websockets
 
 async def send_message():
-    uri = "ws://10.2.2.223:8888"
+    uri = "ws://10.2.2.2:8888"
     async with websockets.connect(uri) as websocket:
         try:
             while True:
-                message = input("Enter a message to send to the server: ")
+                message = input("Entrez un message à envoyer au serveur: ")
                 await websocket.send(message)
-                print(f"Sent message: {message}")
+                print(f"Message envoyé: {message}")
 
                 response = await websocket.recv()
-                print(f"Received response: {response}")
+                print(f"Réponse reçue: {response}")
         except websockets.exceptions.ConnectionClosedError as e:
-            print(f"Connection closed error: {e}")
+            print(f"Erreur de fermeture de connexion: {e}")
         except Exception as e:
-            print(f"An error occurred: {e}")
+            print(f"Une erreur est survenue: {e}")
 
 if __name__ == "__main__":
     asyncio.run(send_message())
