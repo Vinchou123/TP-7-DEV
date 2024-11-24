@@ -12,7 +12,7 @@ async def broadcast_message(sender, message, include_sender=False):
         except Exception as e:
             print(f"Erreur d'envoi vers {info['pseudo']}: {e}")
 
-async def handle_client(websocket: WebSocketServerProtocol, path):
+async def handle_client(websocket: WebSocketServerProtocol):
     addr = websocket.remote_address
     print(f"Nouvelle connexion de {addr}")
 
@@ -47,11 +47,10 @@ async def handle_client(websocket: WebSocketServerProtocol, path):
         await websocket.close()
 
 async def main():
-    server_host = "10.2.2.2"
-    server_port = 8888
+   
 
-    server = await serve(handle_client, server_host, server_port)
-    print(f"Serveur WebSocket lancé sur {server_host}:{server_port}")
+    server = await serve(handle_client, '10.2.2.2', 8888)
+    print(f"Serveur WebSocket lancé sur ws://10.2.2.2:8888")
 
     async with server:
         await asyncio.Future()
