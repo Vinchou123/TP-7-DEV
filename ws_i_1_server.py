@@ -15,6 +15,7 @@ async def echo(websocket, path):
 
 async def main():
     async with websockets.serve(echo, "10.2.2.223", 8888) as server:
+        print("Server started and listening on 10.2.2.223:8888")
         await server.wait_closed()
 
 if __name__ == "__main__":
