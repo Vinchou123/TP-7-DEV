@@ -13,7 +13,7 @@ async def handle_client(websocket, path):
 
 async def main():
     server = await websockets.serve(handle_client, "localhost", 8888)
-    print("Serveur WebSocket démarré sur ws://localhost:8765")
+    print("Serveur WebSocket démarré sur ws://localhost:8888")
     await server.wait_closed()
 
 asyncio.run(main())
