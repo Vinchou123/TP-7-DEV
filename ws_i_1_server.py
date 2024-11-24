@@ -1,22 +1,19 @@
 import asyncio
 import websockets
 
-async def echo(websocket, path):
+async def handle_client(websocket, path):
     try:
-        async for message in websocket:
-            print(f"Message reçu: {message}")
-            response = f"Bonjour client! Message reçu: \"{message}\""
-            await websocket.send(response)
-            print(f"Réponse envoyée: {response}")
-    except websockets.exceptions.ConnectionClosedError as e:
-        print(f"Erreur de fermeture de connexion: {e}")
+        message = await websocket.recv()
+        print(f"Message reçu du client: {message}")
+        
+        response = f"Hello client! Received \"{message}\""
+        await websocket.send(response)
     except Exception as e:
-        print(f"Une erreur est survenue: {e}")
+        print(f"Erreur: {e}")
 
 async def main():
-    async with websockets.serve(echo, "10.2.2.2", 8888) as server:
-        print("Serveur démarré et en écoute sur 10.2.2.2:8888")
-        await server.wait_closed()
+    server = await websockets.serve(handle_client, "localhost", 8888)
+    print("Serveur WebSocket démarré sur ws://localhost:8765")
+    await server.wait_closed()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.run(main())
