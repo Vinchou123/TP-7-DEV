@@ -1,7 +1,7 @@
 import asyncio
 import websockets
 
-async def handle_client(websocket, path):
+async def handle_client(websocket):
     print(f"Connexion établie avec : {websocket.remote_address}")
     try:
         while True:
@@ -17,9 +17,9 @@ async def handle_client(websocket, path):
 
 async def main():
     server = await websockets.serve(
-        handle_client,
-        "10.2.2.2",
-        8888             
+        lambda ws, _: handle_client(ws),
+        "10.2.2.2",                     
+        8888                            
     )
     print("Serveur WebSocket démarré sur ws://10.2.2.2:8888")
     await asyncio.Future()
