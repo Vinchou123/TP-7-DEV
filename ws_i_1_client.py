@@ -14,7 +14,7 @@ async def echo(websocket, path):
         print(f"An error occurred: {e}")
 
 async def main():
-    async with websockets.serve(echo, "10.2.2.2", 8888) as server:
+    async with websockets.serve(echo, "10.2.2.223", 8888) as server:
         print("Server started and listening on 10.2.2.2:8888")
         await server.wait_closed()
 
