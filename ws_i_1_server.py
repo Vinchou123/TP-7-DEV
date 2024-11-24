@@ -12,8 +12,8 @@ async def handle_client(websocket, path):
         print(f"Erreur: {e}")
 
 async def main():
-    server = await websockets.serve(handle_client, "localhost", 8888)
-    print("Serveur WebSocket démarré sur ws://localhost:8888")
+    server = await websockets.serve(handle_client, "10.2.2.2", 8888)
+    print("Serveur WebSocket démarré sur ws://10.2.2.2:8888")
     await server.wait_closed()
 
 asyncio.run(main())
