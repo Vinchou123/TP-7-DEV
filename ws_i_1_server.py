@@ -2,9 +2,9 @@ import asyncio
 import websockets
 
 async def hello(websocket):
-    name = await websocket.recv()
-    print(f"<<< {name}")
-    greeting = f"Hello client ! Received \"{name}\""
+    mess = await websocket.recv()
+    print(f"<<< {mess}")
+    greeting = f"Hello client ! Received \"{mess}\""
     await websocket.send(greeting)
     print(f">>> {greeting}")
 
