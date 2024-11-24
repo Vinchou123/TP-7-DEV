@@ -9,8 +9,8 @@ async def echo(websocket, path):
         print(f"Sent response: {response}")
 
 async def main():
-    start_server = websockets.serve(echo, "10.2.2.2", 8888)
-    await start_server.wait_closed()
+    async with websockets.serve(echo, "10.2.2.2", 8888) as server:
+        await server.wait_closed()
 
 if __name__ == "__main__":
     asyncio.run(main())
