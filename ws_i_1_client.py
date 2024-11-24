@@ -18,4 +18,5 @@ async def send_message():
     except Exception as e:
         print(f"Erreur : {e}")
 
-asyncio.run(send_message())
+if __name__ == "__main__":
+    asyncio.run(send_message())
